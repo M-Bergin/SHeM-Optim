@@ -72,11 +72,11 @@ g=sigma-sqrt((d/(2*sqrt(3)))^2+(B*f/sqrt(3))^2+(0.42*lambda_wav*f/d)^2);
 %Set all the constants
 d_noz=10e-4; %Nozzle diameter in cm
 f=1e-3;
-lambda_wav=5e-11;
+lambda_wav=5.63e-11;
 
 %Set the target resolution here. Note for a pinhole the best possible
 %resolution is given by sqrt(1.22*f*lambda_wav)
-sigma_loop_pinhole=[sqrt(0.4205*f*lambda_wav)/3^(0.25):0.5e-9:150e-9,150e-9:5e-9:2e-6];
+sigma_loop_pinhole=[sqrt(0.4203*f*lambda_wav)/3^(0.25):0.5e-9:141e-9,141e-9:5e-9:2e-6];
 N_loop=length(sigma_loop_pinhole);
 x_pinhole=zeros(N_loop,3);
 I_out_pinhole=zeros(N_loop,1);
@@ -98,7 +98,7 @@ for k=1:N_loop
     nonlcon=@g_func_pinhole_mb;
     
     %Set options
-    options=optimoptions('fmincon','Display','iter');
+    %options=optimoptions('fmincon','Display','iter');
     options.MaxFunctionEvaluations=5000;
     options.ConstraintTolerance=1e-8;
     options.OptimalityTolerance=1e-8;

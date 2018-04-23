@@ -118,11 +118,11 @@ d_noz=10e-4;        %Nozzle diameter in cm
 delta_r=25e-9;      %Minimum feature size of zone plate
 f=1e-3;             %Working Distance
 n=0.05;             %Efficiency of the zone plate
-tau=3.562;          %Chromatic aberration corretion term
-lambda_wav=5e-11;   %Helium wavelength
+tau=1;%3.582;          %Chromatic aberration corretion term
+lambda_wav=5.63e-11;%Helium wavelength
 sigma_loop=[delta_r*1.23:0.5e-9:80e-9,80e-9:5e-9:2000e-9];
 N_loop=length(sigma_loop);
-x=zeros(N_loop,2);
+x_big=zeros(N_loop,2);
 I_out=zeros(N_loop,1);
 
 %Loop over every resolution
@@ -146,13 +146,13 @@ for k=1:N_loop
     %options.ConstraintTolerance=1e-;
     
     %Find the constrained minimum
-    [x(k,:),I_out(k)]=fmincon(I_fun,[sigma/(1e-5*f),0.4],[0,1],1.75,[],[],[0,0],[],nonlcon,options);
+    [x_big(k,:),I_out(k)]=fmincon(I_fun,[sigma/(1e-5*f),0.4],[0,1],1.75,[],[],[0,0],[],nonlcon,options);
 end
 
 %Change back to absolute intensity
 I_out=I_out* (0.18*pi^2/sqrt(m*k_B*T))*conv_mbar_factor*100/mult; 
 
-x(:,2)=x(:,2)*1e5*conv_mbar_factor/1e3; %Change back to bar
+x_big(:,2)=x_big(:,2)*1e5*conv_mbar_factor/1e3; %Change back to bar
 
 S_h=matlabFunction(subs(S));
 Br_diff_h=matlabFunction(subs(Br_diff));
