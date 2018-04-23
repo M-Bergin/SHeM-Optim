@@ -58,14 +58,14 @@ ylabel('Optimum Pinhole Diameter\sl d\rm/nm')
 axis tight
 
 %Plot the optimal pressure
-figure;plot(sigma_loop*1e9,x_big(:,2))
-hold on
-plot(sigma_loop*1e9,x(:,2),'m')
-plot([1e-5, 2000],[(P_o*conv_mbar_factor*100)/1e5, (P_o*conv_mbar_factor*100)/1e5],'r--')
-xlabel('\sigma/nm')
-ylabel('Optimum Pressure P_{0}/bar')
-xlim([30 1000])
-ylim([55 100])
-xticks([50 100 200 300 500 1000])
-set(gca,'XScale','log')
-legend('Zone plate with standard ab.','Zone plate with corrected ab.','Pinhole')
+% figure;plot(sigma_loop*1e9,x(:,2))
+% hold on
+% plot(sigma_loop*1e9,x(:,2),'m')
+% plot([1e-5, 2000],[(P_o*conv_mbar_factor*100)/1e5, (P_o*conv_mbar_factor*100)/1e5],'r--')
+% xlabel('\sigma/nm')
+% ylabel('Optimum Pressure P_{0}/bar')
+% xlim([30 1000])
+% ylim([55 100])
+% xticks([50 100 200 300 500 1000])
+% set(gca,'XScale','log')
+% legend('Zone plate with standard ab.','Zone plate with corrected ab.','Pinhole')
